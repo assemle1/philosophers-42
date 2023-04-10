@@ -26,6 +26,7 @@ typedef struct s_data
     time_t               ttd;
     time_t                tte;
     time_t                tts;
+    int                 can_print;
     int                meals;
     time_t                 t_start;        
 }               t_data;
@@ -51,4 +52,10 @@ time_t     ms_time();
 void    mssleep(time_t t_ms);
 time_t  current_time(time_t s_time);
 void    mutex_destroy(t_philo   *lst_philo);
+void    is_eating(t_philo *lst_philo);
+void    forks(t_philo *lst_philo, char  *fork);
+void    is_sleeping(t_philo *lst_philo);
+void    is_thinking(t_philo *lst_philo);
+void	ft_lstclear(t_philo **lst_philo);
+
 #endif

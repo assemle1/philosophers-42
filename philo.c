@@ -1,8 +1,5 @@
 #include "philo.h"
 
-size_t mail = 0;
-pthread_mutex_t mutex;
-
 void    get_infos(t_data *infos, char **av)
 {
     infos->n_philos = ft_atoi(av[1]);
@@ -92,62 +89,37 @@ void    check_death(t_philo   *philo)
 {
     while(philo)
     {
-        if (finished(philo))
-            break;
         if (current_time(philo->infos->t_start) - philo->lte > philo->infos->ttd)
             {
+                philo->infos->can_print = 0;
                 pthread_mutex_lock(&philo->infos->print);
                 printf("%ld %d died\n", current_time(philo->infos->t_start), philo->id);
                 pthread_mutex_unlock(&philo->infos->print);
                 break;
             }
+        if (finished(philo))
+            break;
         philo = philo->next;
     }
 }
-void    is_eating(t_philo *lst_philo)
-{
-    pthread_mutex_lock(&lst_philo->infos->print);
-            lst_philo->n_meals++;
-            printf("%ld %d is eating\n", current_time(lst_philo->infos->t_start), lst_philo->id);
-            lst_philo->lte = ms_time() - lst_philo->infos->t_start;
-            pthread_mutex_unlock(&lst_philo->infos->print);
-            mssleep(lst_philo->infos->tte);
-}
 
-void    forks(t_philo *lst_philo)
-{
-        pthread_mutex_lock(&lst_philo->infos->print);
-            printf("%ld %d has taken a fork\n", current_time(lst_philo->infos->t_start), lst_philo->id);
-            pthread_mutex_unlock(&lst_philo->infos->print);
-}
-void    is_sleeping(t_philo *lst_philo)
-{
-      pthread_mutex_lock(&lst_philo->infos->print);
-            printf("%ld %d is sleeping\n",  current_time(lst_philo->infos->t_start), lst_philo->id);
-            pthread_mutex_unlock(&lst_philo->infos->print);
-            mssleep(lst_philo->infos->tts);
-}
-void    is_thinking(t_philo *lst_philo)
-{
-            pthread_mutex_lock(&lst_philo->infos->print);
-            printf("%ld %d  is thinking\n", current_time(lst_philo->infos->t_start), lst_philo->id);
-            pthread_mutex_unlock(&lst_philo->infos->print);
-}
 void    *philo(void   *arg)
 {
     t_philo *lst_philo = (t_philo *)(arg);
+    
     while(1)
     {
+        if (!lst_philo->infos->can_print)
+            break ;
         if (lst_philo->n_meals == lst_philo->infos->meals)
             break;
         if (lst_philo->id % 2)
             usleep(100);
             pthread_mutex_lock(&lst_philo->p_fork);
+            forks(lst_philo, "right");
             pthread_mutex_lock(&lst_philo->next->p_fork);
-            forks(lst_philo);
+            forks(lst_philo, "left");
             is_eating(lst_philo);
-            pthread_mutex_unlock(&lst_philo->p_fork);
-            pthread_mutex_unlock(&lst_philo->next->p_fork);
             is_sleeping(lst_philo);
             is_thinking(lst_philo);
     }
@@ -160,6 +132,7 @@ void    init_scene(t_philo *lst_philo)
 
     i = 0;
     lst_philo->infos->t_start = ms_time();
+    lst_philo->infos->can_print = 1;
     while(lst_philo)
     {
         pthread_create(&lst_philo->t_id, NULL,philo, (void *)lst_philo);
@@ -201,7 +174,7 @@ int main(int ac, char **av)
 {
     t_data infos;
     t_philo *lst_philo;
- 
+
     lst_philo = set_args(&infos, av, ac);
     pthread_mutex_init(&infos.print, NULL);
     init_scene(lst_philo);
