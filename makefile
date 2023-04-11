@@ -6,11 +6,11 @@
 #    By: astalha <astalha@student.1337.ma>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/09 09:17:55 by astalha           #+#    #+#              #
-#    Updated: 2023/04/10 05:03:08 by astalha          ###   ########.fr        #
+#    Updated: 2023/04/11 04:29:54 by astalha          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS			=	ft_atoi.c ft_isdigit.c linkedlist.c philo.c time.c actions.c cleaner.c
+SRCS			=	ft_atoi.c ft_isdigit.c linkedlist.c philo.c time.c actions.c cleaner.c 
 BONUS           =	
 					
 OBJS			= $(SRCS:.c=.o)

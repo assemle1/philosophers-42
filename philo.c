@@ -91,8 +91,8 @@ void    check_death(t_philo   *philo)
     {
         if (current_time(philo->infos->t_start) - philo->lte > philo->infos->ttd)
             {
-                philo->infos->can_print = 0;
                 pthread_mutex_lock(&philo->infos->print);
+                philo->infos->can_print = 0;
                 printf("%ld %d died\n", current_time(philo->infos->t_start), philo->id);
                 pthread_mutex_unlock(&philo->infos->print);
                 break;
@@ -107,30 +107,25 @@ void    *philo(void   *arg)
 {
     t_philo *lst_philo = (t_philo *)(arg);
     
-    while(1)
+    while(lst_philo->infos->can_print)
     {
-        if (!lst_philo->infos->can_print)
-            break ;
         if (lst_philo->n_meals == lst_philo->infos->meals)
             break;
         if (lst_philo->id % 2)
             usleep(100);
+            is_thinking(lst_philo);
             pthread_mutex_lock(&lst_philo->p_fork);
             forks(lst_philo, "right");
             pthread_mutex_lock(&lst_philo->next->p_fork);
             forks(lst_philo, "left");
             is_eating(lst_philo);
             is_sleeping(lst_philo);
-            is_thinking(lst_philo);
     }
     return NULL;
 }
 
 void    init_scene(t_philo *lst_philo)
 {
-    int i;
-
-    i = 0;
     lst_philo->infos->t_start = ms_time();
     lst_philo->infos->can_print = 1;
     while(lst_philo)
@@ -141,13 +136,6 @@ void    init_scene(t_philo *lst_philo)
             break;
     }
     check_death(lst_philo);
-    while(lst_philo)
-    {
-        pthread_detach(lst_philo->t_id);
-        lst_philo = lst_philo->next;
-         if (lst_philo->id == 1)
-            break;
-    }
 }
 
 t_philo    *set_args(t_data *infos, char **av, int ac)
@@ -179,4 +167,5 @@ int main(int ac, char **av)
     pthread_mutex_init(&infos.print, NULL);
     init_scene(lst_philo);
     mutex_destroy(lst_philo);
+    ft_lstclear(&lst_philo);
 }

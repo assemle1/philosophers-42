@@ -6,7 +6,7 @@
 /*   By: astalha <astalha@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 04:57:46 by astalha           #+#    #+#             */
-/*   Updated: 2023/04/10 05:36:48 by astalha          ###   ########.fr       */
+/*   Updated: 2023/04/11 05:40:53 by astalha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,22 @@ void	freealloc2(char **ptr)
 void	ft_lstclear(t_philo **lst_philo)
 {
 	t_philo	*philo;
+	t_philo *tmp;
 
+	mssleep(200);
 	if (!lst_philo)
 		return ;
 	philo = *lst_philo;
-	while (philo != NULL)
+	while (1)
 	{
-		free(philo);
+		if (philo->id == philo->infos->n_philos)
+		{
+			free(philo);
+			break;
+		}
+		tmp = philo;
 		philo = philo->next;
+		free(tmp);
 	}
 	*lst_philo = NULL;
 }

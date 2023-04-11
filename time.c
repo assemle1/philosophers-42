@@ -6,7 +6,7 @@
 /*   By: astalha <astalha@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 01:54:48 by astalha           #+#    #+#             */
-/*   Updated: 2023/04/08 22:36:10 by astalha          ###   ########.fr       */
+/*   Updated: 2023/04/11 05:45:57 by astalha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ time_t  current_time(time_t s_time)
 void    mssleep(time_t t_ms)
 {
     time_t  time = ms_time();
-    while(ms_time() - time < t_ms)
-        usleep(110);
+    
+    usleep(t_ms * 0.95 * 1000);
+    while((ms_time() - time) < t_ms)
+        usleep(50);
 }
