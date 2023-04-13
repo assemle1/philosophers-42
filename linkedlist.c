@@ -12,7 +12,7 @@
 
 #include "philo.h"
 
-void    ft_lstadd_back(t_philo **lst, t_philo *new)
+void	ft_lstadd_back(t_philo **lst, t_philo *new)
 {
 	t_philo	*lastlst;
 
@@ -21,8 +21,7 @@ void    ft_lstadd_back(t_philo **lst, t_philo *new)
 		*lst = new;
 		return ;
 	}
-
-	lastlst =  ft_lstlast (*lst);
+	lastlst = ft_lstlast (*lst);
 	lastlst->next = new;
 }
 
@@ -70,7 +69,6 @@ t_philo	*ft_lstnew(int content)
 	new = (t_philo *) malloc (sizeof (t_philo));
 	if (!new)
 		return (NULL);
-	new->state = 0;
 	new->id = content;
 	new->n_meals = 0;
 	new->lte = 0;

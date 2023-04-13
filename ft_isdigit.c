@@ -14,14 +14,14 @@
 
 int	ft_isdigit(char *arg)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while (arg[i])
-    {
-        if (arg[i] < 48 || arg[i] > 57)
-            return (0);
-        i++;
-    }
+	i = 0;
+	while (arg[i])
+	{
+		if (arg[i] < 48 || arg[i] > 57)
+			return (0);
+		i++;
+	}
 	return (1);
 }

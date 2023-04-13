@@ -6,33 +6,31 @@
 /*   By: astalha <astalha@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 04:57:46 by astalha           #+#    #+#             */
-/*   Updated: 2023/04/11 05:40:53 by astalha          ###   ########.fr       */
+/*   Updated: 2023/04/13 02:58:20 by astalha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	freealloc2(char **ptr)
+void	mutex_destroy(t_philo *lst_philo)
 {
-	int	i;
-
-	i = 0;
-	if (!ptr[i])
-		i++;
-	while (ptr[i])
+	pthread_mutex_destroy(&lst_philo->infos->print);
+	while (lst_philo)
 	{
-		free (ptr[i]);
-		i++;
+		pthread_mutex_destroy(&lst_philo->p_fork);
+		lst_philo = lst_philo->next;
+		if (lst_philo->id == 1)
+			break ;
 	}
-	free(ptr);
 }
 
 void	ft_lstclear(t_philo **lst_philo)
 {
 	t_philo	*philo;
-	t_philo *tmp;
+	t_philo	*tmp;
 
-	mssleep(200);
+	mutex_destroy(*lst_philo);
+	mssleep(300);
 	if (!lst_philo)
 		return ;
 	philo = *lst_philo;
@@ -41,7 +39,7 @@ void	ft_lstclear(t_philo **lst_philo)
 		if (philo->id == philo->infos->n_philos)
 		{
 			free(philo);
-			break;
+			break ;
 		}
 		tmp = philo;
 		philo = philo->next;
