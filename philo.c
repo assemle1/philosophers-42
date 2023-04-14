@@ -42,7 +42,7 @@ int	main(int ac, char **av)
 	lst_philo = set_args(&infos, av, ac);
 	if (!lst_philo)
 		return (0);
-	if (pthread_mutex_init(&infos.print, NULL))
+	if (pthread_mutex_init(&infos.print, NULL) != 0)
 		return (printf("System Error\n"), 0);
 	init_scene(lst_philo);
 	ft_lstclear(&lst_philo);
