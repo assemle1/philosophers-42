@@ -23,6 +23,7 @@ typedef struct s_data
 {
 	pthread_mutex_t			print;
 	pthread_mutex_t			mutex;
+	pthread_mutex_t			mutex2;
 	int						n_philos;
 	time_t					ttd;
 	time_t					tte;
@@ -60,8 +61,8 @@ void	is_thinking(t_philo *lst_philo);
 void	ft_lstclear(t_philo **lst_philo);
 void	*philo(void *arg);
 void	check_death(t_philo *philo);
-int	get_infos(t_data *infos, char **av);
-int	check_input(int ac, char **av);
-int	check_infos(t_data *infos);
+int		get_infos(t_data *infos, char **av);
+int		check_input(int ac, char **av);
+int		check_infos(t_data *infos);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: astalha <astalha@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 02:31:43 by astalha           #+#    #+#             */
-/*   Updated: 2023/04/13 06:30:04 by astalha          ###   ########.fr       */
+/*   Updated: 2023/04/14 00:36:17 by astalha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,7 @@ int	check_input(int ac, char **av)
 	while (av[i])
 	{
 		if (!ft_isdigit(av[i]))
-		{
-			print_err();
-			return (0);
-		}
+			return (print_err(), 0);
 		i++;
 	}
 	return (1);

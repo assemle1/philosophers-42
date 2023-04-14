@@ -15,7 +15,6 @@
 void	init_scene(t_philo *lst_philo)
 {
 	lst_philo->infos->t_start = ms_time();
-	lst_philo->infos->can_print = 1;
 	while (lst_philo)
 	{
 		pthread_create(&lst_philo->t_id, NULL, philo, (void *)lst_philo);

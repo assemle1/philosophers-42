@@ -6,7 +6,7 @@
 /*   By: astalha <astalha@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 02:33:53 by astalha           #+#    #+#             */
-/*   Updated: 2023/04/13 02:49:17 by astalha          ###   ########.fr       */
+/*   Updated: 2023/04/14 01:19:53 by astalha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,9 @@ void	check_death(t_philo *philo)
 		pthread_mutex_unlock(&philo->infos->print);
 		if (time > philo->infos->ttd)
 		{
-			pthread_mutex_lock(&philo->infos->mutex);
-				philo->infos->can_print = 0;
-			pthread_mutex_unlock(&philo->infos->mutex);
 			pthread_mutex_lock(&philo->infos->print);
 			printf("%ld %d died\n",
 				current_time(philo->infos->t_start), philo->id);
-			pthread_mutex_unlock(&philo->infos->print);
 			break ;
 		}
 		if (finished(philo))
@@ -69,13 +65,10 @@ void	*philo(void *arg)
 	f = 1;
 	if (lst_philo->id % 2)
 		usleep(100);
-	while (f)
+	while (1)
 	{
 		if (lst_philo->n_meals == lst_philo->infos->meals)
 			break ;
-		pthread_mutex_lock(&lst_philo->infos->mutex);
-		f = lst_philo->infos->can_print;
-		pthread_mutex_unlock(&lst_philo->infos->mutex);
 		pthread_mutex_lock(&lst_philo->p_fork);
 		forks(lst_philo, "right");
 		pthread_mutex_lock(&lst_philo->next->p_fork);

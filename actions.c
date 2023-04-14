@@ -6,7 +6,7 @@
 /*   By: astalha <astalha@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 00:24:05 by astalha           #+#    #+#             */
-/*   Updated: 2023/04/13 02:17:12 by astalha          ###   ########.fr       */
+/*   Updated: 2023/04/14 00:52:02 by astalha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,6 @@
 
 void	is_eating(t_philo *lst_philo)
 {
-	int	c;
-
-	c = 1;
-	pthread_mutex_lock(&lst_philo->infos->mutex);
-	c = lst_philo->infos->can_print;
-	pthread_mutex_unlock(&lst_philo->infos->mutex);
-	if (!c)
-		return ;
 	pthread_mutex_lock(&lst_philo->infos->print);
 	lst_philo->lte = ms_time() - lst_philo->infos->t_start;
 	lst_philo->n_meals++;
@@ -35,14 +27,6 @@ void	is_eating(t_philo *lst_philo)
 
 void	forks(t_philo *lst_philo, char *fork)
 {
-	int	c;
-
-	c = 1;
-	pthread_mutex_lock(&lst_philo->infos->mutex);
-	c = lst_philo->infos->can_print;
-	pthread_mutex_unlock(&lst_philo->infos->mutex);
-	if (!c)
-		return ;
 	pthread_mutex_lock(&lst_philo->infos->print);
 	printf("%ld %d has taken the %s fork\n",
 		current_time(lst_philo->infos->t_start), lst_philo->id, fork);
@@ -51,14 +35,6 @@ void	forks(t_philo *lst_philo, char *fork)
 
 void	is_sleeping(t_philo *lst_philo)
 {
-	int	c;
-
-	c = 1;
-	pthread_mutex_lock(&lst_philo->infos->mutex);
-	c = lst_philo->infos->can_print;
-	pthread_mutex_unlock(&lst_philo->infos->mutex);
-	if (!c)
-		return ;
 	pthread_mutex_lock(&lst_philo->infos->print);
 	printf("%ld %d is sleeping\n",
 		current_time(lst_philo->infos->t_start), lst_philo->id);
@@ -68,14 +44,6 @@ void	is_sleeping(t_philo *lst_philo)
 
 void	is_thinking(t_philo *lst_philo)
 {
-	int	c;
-
-	c = 1;
-	pthread_mutex_lock(&lst_philo->infos->mutex);
-	c = lst_philo->infos->can_print;
-	pthread_mutex_unlock(&lst_philo->infos->mutex);
-	if (!c)
-		return ;
 	pthread_mutex_lock(&lst_philo->infos->print);
 	printf("%ld %d  is thinking\n",
 		current_time(lst_philo->infos->t_start), lst_philo->id);
