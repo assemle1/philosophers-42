@@ -6,7 +6,7 @@
 /*   By: astalha <astalha@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 02:31:43 by astalha           #+#    #+#             */
-/*   Updated: 2023/04/14 00:36:17 by astalha          ###   ########.fr       */
+/*   Updated: 2023/04/14 01:43:22 by astalha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ int	check_input(int ac, char **av)
 
 int	check_infos(t_data *infos)
 {
-	if (infos->n_philos <= 0 || infos->n_philos > 200)
-		return (printf("Usage : [num_of_philos] should be [0->200]\n"), 0);
+	if (infos->n_philos <= 0)
+		return (printf("Usage : [num_of_philos] should be > 0\n"), 0);
 	if (infos->ttd <= 0 || infos->tte <= 0 || infos->tts <= 0)
 		return (printf("Usage : [time] should be > 0\n"), 0);
 	if (infos->meals == 0 || infos->meals < -1)

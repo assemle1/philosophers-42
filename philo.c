@@ -12,24 +12,19 @@
 
 #include "philo.h"
 
-void	init_scene(t_philo *lst_philo)
+int	init_scene(t_philo *lst_philo)
 {
 	lst_philo->infos->t_start = ms_time();
 	while (lst_philo)
 	{
-		pthread_create(&lst_philo->t_id, NULL, philo, (void *)lst_philo);
+		if (pthread_create(&lst_philo->t_id, NULL, philo, (void *)lst_philo))
+			return (printf("System Error\n"), 0);
 		lst_philo = lst_philo->next;
 		if (lst_philo->id == 1)
 			break ;
 	}
 	check_death(lst_philo);
-	while (lst_philo)
-	{
-		pthread_detach(lst_philo->t_id);
-		lst_philo = lst_philo->next;
-		if (lst_philo->id == 1)
-			break ;
-	}
+	return (1);
 }
 
 t_philo	*set_args(t_data *infos, char **av, int ac)
@@ -47,7 +42,8 @@ int	main(int ac, char **av)
 	lst_philo = set_args(&infos, av, ac);
 	if (!lst_philo)
 		return (0);
-	pthread_mutex_init(&infos.print, NULL);
+	if (pthread_mutex_init(&infos.print, NULL))
+		return (printf("System Error\n"), 0);
 	init_scene(lst_philo);
 	ft_lstclear(&lst_philo);
 }
