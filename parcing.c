@@ -6,7 +6,7 @@
 /*   By: astalha <astalha@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 02:31:43 by astalha           #+#    #+#             */
-/*   Updated: 2023/04/14 01:43:22 by astalha          ###   ########.fr       */
+/*   Updated: 2023/04/14 02:12:46 by astalha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	check_input(int ac, char **av)
 	int	i;
 
 	i = 1;
-	if (ac < 4 || ac > 6)
+	if (ac < 5 || ac > 6)
 		return (print_err(), 0);
 	while (av[i])
 	{
