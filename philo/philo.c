@@ -24,6 +24,13 @@ int	init_scene(t_philo *lst_philo)
 			break ;
 	}
 	check_death(lst_philo);
+	while (lst_philo)
+	{
+		pthread_detach(lst_philo->t_id);
+		lst_philo = lst_philo->next;
+		if (lst_philo->id == 1)
+			break ;
+	}
 	return (1);
 }
 

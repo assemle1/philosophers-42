@@ -6,7 +6,7 @@
 /*   By: astalha <astalha@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 02:33:53 by astalha           #+#    #+#             */
-/*   Updated: 2023/04/14 03:08:00 by astalha          ###   ########.fr       */
+/*   Updated: 2023/04/16 06:41:56 by astalha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ void	check_death(t_philo *philo)
 		}
 		if (finished(philo))
 			break ;
-	philo = philo->next;
-	usleep(100);
+		philo = philo->next;
+		usleep(100);
 	}
 }
 

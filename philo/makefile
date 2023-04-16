@@ -6,7 +6,7 @@
 #    By: astalha <astalha@student.1337.ma>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/09 09:17:55 by astalha           #+#    #+#              #
-#    Updated: 2023/04/14 02:14:12 by astalha          ###   ########.fr        #
+#    Updated: 2023/04/16 06:32:09 by astalha          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ SRCS			=	ft_atoi.c ft_isdigit.c linkedlist.c philo.c time.c actions.c cleaner.c 
 OBJS			= $(SRCS:.c=.o)
 CC				= cc
 RM				= rm -f
-FLAGS			= -Wall -Wextra -Werror
+FLAGS			= -Wall -Wextra -Werror -fsanitize=thread -g
 NAME			= philo
 
 .PHONY: all clean fclean re
