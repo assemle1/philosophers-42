@@ -6,17 +6,17 @@
 #    By: astalha <astalha@student.1337.ma>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/09 09:17:55 by astalha           #+#    #+#              #
-#    Updated: 2023/04/14 06:29:51 by astalha          ###   ########.fr        #
+#    Updated: 2023/04/16 01:42:10 by astalha          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS			=	ft_atoi.c ft_isdigit.c linkedlist.c philo_bonus.c time.c cleaner.c parcing.c ft_itoa.c routine.c actions.c
+SRCS			=	ft_atoi.c ft_isdigit.c linkedlist.c philo_bonus.c time.c cleaner.c parcing.c routine.c actions.c
 					
 OBJS			= $(SRCS:.c=.o)
 CC				= cc
 RM				= rm -f
 FLAGS			= -Wall -Wextra -Werror
-NAME			= philo
+NAME			= philo_bonus
 
 .PHONY: all clean bonus fclean re
 

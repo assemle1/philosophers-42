@@ -6,7 +6,7 @@
 /*   By: astalha <astalha@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 05:09:34 by astalha           #+#    #+#             */
-/*   Updated: 2023/04/15 07:15:27 by astalha          ###   ########.fr       */
+/*   Updated: 2023/04/16 02:13:25 by astalha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,12 @@ typedef struct s_data
 	sem_t			*print;
 	sem_t			*forks;
 	sem_t			*all_eat;
-	int						n_philos;
-	time_t					ttd;
-	time_t					tte;
-	time_t					tts;
-	int						can_print;
-	int						meals;
-	time_t					t_start;
+	int				n_philos;
+	time_t			ttd;
+	time_t			tte;
+	time_t			tts;
+	int				meals;
+	time_t			t_start;
 }									t_data;
 
 typedef struct s_philo
@@ -66,6 +65,5 @@ void	*check_death(void *arg);
 int		get_infos(t_data *infos, char **av);
 int		check_input(int ac, char **av);
 int		check_infos(t_data *infos);
-const char	*ft_itoa(int n);
 
 #endif

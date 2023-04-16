@@ -6,7 +6,7 @@
 /*   By: astalha <astalha@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 04:57:46 by astalha           #+#    #+#             */
-/*   Updated: 2023/04/15 01:21:58 by astalha          ###   ########.fr       */
+/*   Updated: 2023/04/16 02:21:04 by astalha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,9 @@ void	ft_sem_destroy(t_philo *lst_philo)
 {
 	sem_unlink("/print");
 	sem_unlink("/forks");
-	sem_close(lst_philo->infos->print);
-	sem_close(lst_philo->infos->forks);
+	if (sem_close(lst_philo->infos->print) < 0
+		|| sem_close(lst_philo->infos->forks) < 0)
+		printf("Error System : Failed to close semaphore\n");
 }
 
 void	ft_lstclear(t_philo **lst_philo)
