@@ -6,7 +6,7 @@
 /*   By: astalha <astalha@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 02:31:43 by astalha           #+#    #+#             */
-/*   Updated: 2023/04/16 02:00:02 by astalha          ###   ########.fr       */
+/*   Updated: 2023/04/16 08:12:47 by astalha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	get_infos(t_data *infos, char **av)
 
 void	print_err(void)
 {
-	printf("Usage: ./philo [num_of_philos] [time_to_die] "
+	printf("Usage: ./philo_bonus [num_of_philos] [time_to_die] "
 		"[time_to_eat] [time_to_sleep] [optional: num_of_times_to_eat]\n");
 	return ;
 }

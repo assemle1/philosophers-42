@@ -6,7 +6,7 @@
 #    By: astalha <astalha@student.1337.ma>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/09 09:17:55 by astalha           #+#    #+#              #
-#    Updated: 2023/04/16 07:09:22 by astalha          ###   ########.fr        #
+#    Updated: 2023/04/16 08:09:07 by astalha          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ all: $(NAME)
 	$(CC) $(FLAGS) -c $< -o $@
 
 clean:
-	$(RM) $(OBJS) 
+	$(RM) $(OBJS)
 
 fclean:	clean
 	$(RM) $(NAME)
