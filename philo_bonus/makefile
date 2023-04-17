@@ -6,7 +6,7 @@
 #    By: astalha <astalha@student.1337.ma>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/09 09:17:55 by astalha           #+#    #+#              #
-#    Updated: 2023/04/16 08:17:34 by astalha          ###   ########.fr        #
+#    Updated: 2023/04/17 00:14:14 by astalha          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ RM				= rm -f
 FLAGS			= -Wall -Wextra -Werror
 NAME			= philo_bonus
 
-.PHONY: all clean bonus fclean re
+.PHONY: all clean fclean re
 
 $(NAME): $(OBJS) 
 	$(CC) $(FLAGS) $(OBJS) -o $(NAME)
